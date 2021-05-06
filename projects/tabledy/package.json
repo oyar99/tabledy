@@ -1,13 +1,21 @@
 {
   "name": "tabledy",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "peerDependencies": {
     "@angular/common": "^9.1.13",
     "@angular/core": "^9.1.13",
+    "@angular/animations": "~9.1.0",
+    "@angular/platform-browser": "~9.1.0",
+    "@angular/forms": "~9.1.0",
     "@angular/cdk": "^9.2.4",
-    "@angular/material": "^9.2.4"
+    "@angular/material": "^9.2.4",
+    "rxjs": "~6.5.4"
   },
   "dependencies": {
     "tslib": "^1.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JhonRayoCoder/tabledy.git"
   }
 }
