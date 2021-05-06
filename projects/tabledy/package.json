@@ -1,0 +1,13 @@
+{
+  "name": "tabledy",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^9.1.13",
+    "@angular/core": "^9.1.13",
+    "@angular/cdk": "^9.2.4",
+    "@angular/material": "^9.2.4"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}

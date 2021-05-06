@@ -14,7 +14,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "tabledy": [
+        "dist/tabledy/tabledy",
+        "dist/tabledy",
+        "dist/tabledy/tabledy",
+        "dist/tabledy"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

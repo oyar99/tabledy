@@ -1,0 +1,64 @@
+.tabledy {
+
+  .search-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+
+    input {
+      padding-left: 1.6rem;
+      padding-right: 2.5rem;
+      position: relative;
+      flex: 1 1 auto;
+      height: calc(1.4em + .94rem + 3.7px);
+      font-size: 1rem;
+      font-weight: 400;
+      color: #475f7b;
+      background-color: #fff;
+      border: 1px solid #dfe3e7;
+      border-radius: .267rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      appearance: none;
+      overflow: visible;
+    }
+
+    mat-icon {
+      position: absolute;
+      color: rgba(0,0,0,.4);
+      top: 50%;
+      transform: translateY(-50%);
+      left: 4px;
+      z-index: 20;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: unset;
+  }
+
+  th,
+  td {
+    user-select: none;
+  }
+
+  tr.detail-row {
+    height: 0;
+  }
+
+  tr.element-row-basic:hover,
+  tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+  }
+
+  tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+  }
+
+  .element-row td {
+    border-bottom-width: 0;
+  }
+
+}
