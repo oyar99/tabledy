@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-### Add the table in your component
+### Add the table in your template
 
 ```HTML
 <!--
