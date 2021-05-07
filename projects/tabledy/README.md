@@ -155,10 +155,10 @@ hasFilter  | Whether the table will support search filter | true
 isResponsive  | Whether the table will support responsive templates | true
 hasExpandibleRow  | Whether the table will have an expandible row which can be defined with a responsive template | false
 data  | An observable of the data to display | 
-columns  | An array of column descriptions | []
-columnTemplates  | An array of ng-templates which should match the column description | []
-columnWidths  | An array of widths (percentage) that each column will occupy | null
-responsiveTemplate | The responsive/expandible row template | null
+columns  | An array of column descriptions
+columnTemplates  | An array of ng-templates which should match the column description
+columnWidths  | An array of widths (percentage) that each column will occupy
+responsiveTemplate | The responsive/expandible row template
 
 ## License
 
