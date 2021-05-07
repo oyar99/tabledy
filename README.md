@@ -38,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule { }
 ```
 
-### Configure your table in your component
+### Configure the table in your component
 
 ```Typescript
 import { HttpClient } from '@angular/common/http';
@@ -61,7 +61,7 @@ export interface ITodo {
 export class AppComponent implements OnInit {
 
   // Data must be an observable.
-  // The component will listen to any changes in the data and update accordingly
+  // The component will listen to any changes and update accordingly
   data: Observable<ITodo []>;
 
   // Define each of your columns
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-### Add your component in the template
+### Add the table in your component
 
 ```HTML
 <!--
