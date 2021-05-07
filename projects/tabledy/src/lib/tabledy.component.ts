@@ -7,11 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
-export interface IColumnAccessor<T> {
+export interface IColumnDescription<T> {
   /** The unique name of the column */
   name: string;
-  /** The label displayed on the UI - 
-   *  The name will be used instead if this is undefined 
+  /** The label displayed on the UI -
+   *  The name will be used instead if this is undefined
    */
   label?: string;
   /** Whether a column is sortable -
@@ -19,11 +19,11 @@ export interface IColumnAccessor<T> {
    *  which returns the logical value of that column upon which sorting is based
    */
   sortable: boolean;
-  /** A function that returns a logical value for this column */
-  accessor?(arg1: T): any;
   /** Whether this colum should be placed in an expandable row in small screens
    */
   responsive?: boolean;
+  /** A function that returns a logical value for this column */
+  accessor?(arg1: T): any;
 }
 
 @Component({
@@ -54,7 +54,7 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
   @Input() isResponsive = true;
   @Input() hasExpandibleRow = false;
   @Input() data: Observable<T []>;
-  @Input() columns: IColumnAccessor<T> [] = [];
+  @Input() columns: IColumnDescription<T> [] = [];
   @Input() columnTemplates: TemplateRef<any> [] = [];
   @Input() columnWidths: number [];
   @Input() responsiveTemplate: TemplateRef<any>;
@@ -76,7 +76,7 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
       Breakpoints.XSmall,
       Breakpoints.Small
     ])
-      .pipe(takeWhile(()=> this.alive))
+      .pipe(takeWhile(() => this.alive))
       .subscribe(result => {
         this.smallScreen = result.matches;
         this.computeColumns();
@@ -100,10 +100,10 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
 
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
-    }
+    };
 
     if (this.columns.length != this.columnTemplates.length) {
-      throw `Number of columns do not match number of templates`;
+      throw new Error(`Number of columns do not match number of templates`);
     }
 
     this.computeColumns();
@@ -119,7 +119,7 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
       if (column.accessor) {
         return column.accessor(item);
       }
-      throw `Sorting is enabled, but a function for field ${property} was not provided.`;
+      throw new Error(`Sorting is enabled, but a function for field ${property} was not provided.`);
     };
 
     this.dataSource.sort = this.sort;

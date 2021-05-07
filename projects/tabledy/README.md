@@ -21,6 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TabledyModule } from 'tabledy';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    TabledyModule 
+    HttpClientModule,
+    TabledyModule // <-- Tabledy module
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -39,9 +41,10 @@ export class AppModule { }
 ### Configure your table in your component
 
 ```Typescript
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IColumnAccessor } from 'tabledy';
+import { IColumnDescription } from 'tabledy';
 
 export interface ITodo {
   id: number;
@@ -62,7 +65,7 @@ export class AppComponent implements OnInit {
   data: Observable<ITodo []>;
 
   // Define each of your columns
-  columns: IColumnAccessor<ITodo> [] = [
+  columns: IColumnDescription<ITodo> [] = [
     {
       name: 'id',
       label: 'Id',
@@ -93,7 +96,7 @@ export class AppComponent implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
-    this.data = this.httpClient.get<ITodo []>>(`https://jsonplaceholder.typicode.com/todos/`);
+    this.data = this.httpClient.get<ITodo []>(`https://jsonplaceholder.typicode.com/todos/`);
   }
 }
 ```

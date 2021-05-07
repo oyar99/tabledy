@@ -1,26 +1,40 @@
-<ng-template #nameCell let-element='element'>
-  {{ element.name }}
+<!--
+Create a template for each of the columns you want to display
+You can access the elemnt at that cell with let-element.
+You can customize your table however you want
+-->
+<ng-template #idCell let-element='element'>
+  {{ element.id }}
 </ng-template>
 
-<ng-template #phoneCell let-element='element'>
-  {{ element.phoneNumber }}
+<ng-template #userCell let-element='element'>
+  {{ element.userId }}
 </ng-template>
 
-<ng-template #salaryCell let-element='element'>
-  {{ element.salary }}
+<ng-template #titleCell let-element='element'>
+  {{ element.title }}
 </ng-template>
+
+<ng-template #completedCell let-element='element'>
+  <span *ngIf="element.completed">&#10003;</span>
+  <span *ngIf="!element.completed">X</span>
+</ng-template>
+
+<!--
+Create a template that will show up on mobile devices
+-->
 
 <ng-template #responsiveCell let-element='element'>
-  Salary:  {{ element.salary }}
+  {{ element.id }}
 </ng-template>
 
-<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
-  <ngx-tabledy
-    searchLabel="Search item ..."
-    placeholderLabel="Search"
+<!--
+Your awesome table!
+-->
+<ngx-tabledy
+    searchLabel="Search Item"
     [data]="data"
     [columns]="columns"
-    [columnTemplates]="[nameCell, phoneCell, salaryCell]"
+    [columnTemplates]="[idCell, userCell, titleCell, completedCell]"
     [responsiveTemplate]="responsiveCell">
-  </ngx-tabledy>
-</div>
+</ngx-tabledy>
