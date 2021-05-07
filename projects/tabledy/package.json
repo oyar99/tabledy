@@ -4,6 +4,11 @@
   "description": "library to implement beautiful tables",
   "license": "MIT",
   "author": "Jhon Rayo",
+  "keywords": [
+    "angular",
+    "table",
+    "data-table"
+  ],
   "peerDependencies": {
     "@angular/common": "^9.1.13",
     "@angular/core": "^9.1.13",

@@ -1,24 +1,165 @@
 # Tabledy
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/georgipeltekov/ngx-file-drop/blob/master/LICENSE)
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name --project tabledy` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project tabledy`.
-> Note: Don't forget to add `--project tabledy` or else it will be added to the default project in your `angular.json` file. 
+An angular +9 module that provides an easy-to-use data-table that supports filtering, sorting, and pagination.
 
-## Build
+It is a [MatTable](https://material.angular.io/components/table/overview) wrapper that enables you to implement nice-looking tables rapidly.
 
-Run `ng build tabledy` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Getting started
 
-## Publishing
+```bash
+npm install tabledy
+```
 
-After building your library with `ng build tabledy`, go to the dist folder `cd dist/tabledy` and run `npm publish`.
+### Import the 'Tabledy' module
 
-## Running unit tests
+```Typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { TabledyModule } from 'tabledy';
+import { AppComponent } from './app.component';
 
-Run `ng test tabledy` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    TabledyModule 
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Further help
+### Configure your table in your component
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```Typescript
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IColumnAccessor } from 'tabledy';
+
+export interface ITodo {
+  id: number;
+  userId: number;
+  title: string;
+  completed: boolean;
+}
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit {
+
+  // Data must be an observable.
+  // The component will listen to any changes in the data and update accordingly
+  data: Observable<ITodo []>;
+
+  // Define each of your columns
+  columns: IColumnAccessor<ITodo> [] = [
+    {
+      name: 'id',
+      label: 'Id',
+      sortable: false,
+      responsive: true
+    },
+    {
+      name: 'userId',
+      label: 'User',
+      sortable: false,
+      responsive: true
+    },
+    {
+      name: 'title',
+      label: 'Title',
+      sortable: true,
+      accessor: item => {
+          return item.title;
+      }
+    },
+    {
+      name: 'completed',
+      label: 'Done',
+      sortable: false
+    }
+  ];
+
+  constructor(private httpClient: HttpClient) {}
+
+  ngOnInit(): void {
+    this.data = this.httpClient.get<ITodo []>>(`https://jsonplaceholder.typicode.com/todos/`);
+  }
+}
+```
+
+### Add your component in the template
+
+```HTML
+<!--
+Create a template for each of the columns you want to display
+You can access the elemnt at that cell with let-element.
+You can customize your table however you want
+-->
+<ng-template #idCell let-element='element'>
+  {{ element.id }}
+</ng-template>
+
+<ng-template #userCell let-element='element'>
+  {{ element.userId }}
+</ng-template>
+
+<ng-template #titleCell let-element='element'>
+  {{ element.title }}
+</ng-template>
+
+<ng-template #completedCell let-element='element'>
+  <span *ngIf="element.completed">&#10003;</span>
+  <span *ngIf="!element.completed">X</span>
+</ng-template>
+
+<!--
+Create a template that will show up on mobile devices
+-->
+
+<ng-template #responsiveCell let-element='element'>
+  {{ element.id }}
+</ng-template>
+
+<!--
+Your awesome table!
+-->
+<ngx-tabledy
+    searchLabel="Search Item"
+    [data]="data"
+    [columns]="columns"
+    [columnTemplates]="[idCell, userCell, titleCell, completedCell]"
+    [responsiveTemplate]="responsiveCell">
+</ngx-tabledy>
+```
+
+
+## Properties
+
+Name  | Description | Default Value
+------------- | ------------- | -------------
+searchLabel  | String for the search label | 'Search'
+placeholderLabel  | String for the placeholder of the search input | 'Search'
+hasPaginator  | Whether the table will support pagination | true
+hasFilter  | Whether the table will support search filter | true
+isResponsive  | Whether the table will support responsive templates | true
+hasExpandibleRow  | Whether the table will have an expandible row which can be defined with a responsive template | false
+data  | An observable of the data to display | 
+columns  | An array of column descriptions | []
+columnTemplates  | An array of ng-templates which should match the column description | []
+columnWidths  | An array of widths (percentage) that each column will occupy | null
+responsiveTemplate | The responsive/expandible row template | null
+
+## License
+
+[MIT](/LICENSE)
