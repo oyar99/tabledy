@@ -1,7 +1,9 @@
 {
   "name": "tabledy",
-  "version": "0.0.8",
+  "version": "0.0.10",
+  "description": "library to implement beautiful tables",
   "license": "MIT",
+  "author": "Jhon Rayo",
   "peerDependencies": {
     "@angular/common": "^9.1.13",
     "@angular/core": "^9.1.13",
@@ -10,6 +12,7 @@
     "@angular/forms": "~9.1.0",
     "@angular/cdk": "^9.2.4",
     "@angular/material": "^9.2.4",
+    "material-design-icons": "^3.0.1",
     "rxjs": "~6.5.4"
   },
   "dependencies": {

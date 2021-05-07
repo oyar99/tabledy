@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { TabledyModule } from 'tabledy';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TabledyModule } from 'projects/tabledy/src/public-api';
 
 @NgModule({
   declarations: [
@@ -10,7 +9,6 @@ import { TabledyModule } from 'projects/tabledy/src/public-api';
   ],
   imports: [
     BrowserModule,
-    NoopAnimationsModule,
     TabledyModule
   ],
   providers: [],

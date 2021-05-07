@@ -1,124 +1,124 @@
 <div class="tabledy">
-  <ng-container *ngIf="hasFilter">
-    <label>{{ searchLabel }}</label>
-    <div class="search-container">
-      <input
-        (keyup)="search()"
-        [(ngModel)]="query"
-        type="search"
-        title="Buscar"
-        maxlength="10"
-        class="form-control"
-        id="search"
-        [placeholder]="placeholderLabel"
-      />
-      <mat-icon>search</mat-icon>
-    </div>
-  </ng-container>
-  <hr />
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    (matSortChange)="expandedElement = null"
-    multiTemplateDataRows
-    matSort
-  >
-    <!-- Column definitions -->
-    <ng-container *ngFor="let column of columns; let i = index">
-      <ng-container [matColumnDef]="column.name">
-        <ng-container *ngIf="column.label">
-          <ng-container *ngIf="column.sortable">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              {{ column.label }}
-            </th>
-          </ng-container>
-          <ng-container *ngIf="!column.sortable">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ column.label }}
-            </th>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngIf="!column.label">
-          <ng-container *ngIf="column.sortable">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              {{ column.name }}
-            </th>
-          </ng-container>
-          <ng-container *ngIf="!column.sortable">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ column.name }}
-            </th>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngIf="columnWidths">
-          <td
-            [style.width.%]="columnWidths[i]"
-            mat-cell
-            *matCellDef="let element"
-          >
-            <ng-container
-              [ngTemplateOutlet]="columnTemplates[i]"
-              [ngTemplateOutletContext]="{ element: element }"
-            >
+    <ng-container *ngIf="hasFilter">
+      <label>{{ searchLabel }}</label>
+      <div class="search-container">
+        <input
+          (keyup)="search()"
+          [(ngModel)]="query"
+          type="search"
+          title="Buscar"
+          maxlength="10"
+          class="form-control"
+          id="search"
+          [placeholder]="placeholderLabel"
+        />
+        <mat-icon>search</mat-icon>
+      </div>
+    </ng-container>
+    <hr />
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      (matSortChange)="expandedElement = null"
+      multiTemplateDataRows
+      matSort
+    >
+      <!-- Column definitions -->
+      <ng-container *ngFor="let column of columns; let i = index">
+        <ng-container [matColumnDef]="column.name">
+          <ng-container *ngIf="column.label">
+            <ng-container *ngIf="column.sortable">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ column.label }}
+              </th>
             </ng-container>
-          </td>
-        </ng-container>
-        <ng-container *ngIf="!columnWidths">
-          <td mat-cell *matCellDef="let element">
-            <ng-container
-              [ngTemplateOutlet]="columnTemplates[i]"
-              [ngTemplateOutletContext]="{ element: element }"
-            >
+            <ng-container *ngIf="!column.sortable">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ column.label }}
+              </th>
             </ng-container>
-          </td>
+          </ng-container>
+          <ng-container *ngIf="!column.label">
+            <ng-container *ngIf="column.sortable">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ column.name }}
+              </th>
+            </ng-container>
+            <ng-container *ngIf="!column.sortable">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ column.name }}
+              </th>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="columnWidths">
+            <td
+              [style.width.%]="columnWidths[i]"
+              mat-cell
+              *matCellDef="let element"
+            >
+              <ng-container
+                [ngTemplateOutlet]="columnTemplates[i]"
+                [ngTemplateOutletContext]="{ element: element }"
+              >
+              </ng-container>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="!columnWidths">
+            <td mat-cell *matCellDef="let element">
+              <ng-container
+                [ngTemplateOutlet]="columnTemplates[i]"
+                [ngTemplateOutletContext]="{ element: element }"
+              >
+              </ng-container>
+            </td>
+          </ng-container>
         </ng-container>
       </ng-container>
-    </ng-container>
-
-    <!-- Expandable row -->
-
-    <ng-container
-      *ngIf="smallScreen || hasExpandibleRow"
-      matColumnDef="expandedDetail"
-    >
-      <td mat-cell *matCellDef="let element" [attr.colspan]="_columns.length">
-        <div
-          class="d-flex overflow-hidden"
-          [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
-        >
-          <div class="d-flex">
-            <ng-container
-              [ngTemplateOutlet]="responsiveTemplate"
-              [ngTemplateOutletContext]="{ element: element }"
-            >
-            </ng-container>
+  
+      <!-- Expandable row -->
+  
+      <ng-container
+        *ngIf="smallScreen || hasExpandibleRow"
+        matColumnDef="expandedDetail"
+      >
+        <td mat-cell *matCellDef="let element" [attr.colspan]="_columns.length">
+          <div
+            class="d-flex overflow-hidden"
+            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+          >
+            <div class="d-flex">
+              <ng-container
+                [ngTemplateOutlet]="responsiveTemplate"
+                [ngTemplateOutletContext]="{ element: element }"
+              >
+              </ng-container>
+            </div>
           </div>
-        </div>
-      </td>
+        </td>
+      </ng-container>
+  
+      <ng-container>
+        <tr mat-header-row *matHeaderRowDef="_columns"></tr>
+        <tr
+          [class.element-row-basic]="!(smallScreen || hasExpandibleRow)"
+          [class.element-row]="smallScreen || hasExpandibleRow"
+          [class.expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element"
+          mat-row
+          *matRowDef="let element; columns: _columns"
+        ></tr>
+      </ng-container>
+  
+      <ng-container *ngIf="smallScreen || hasExpandibleRow">
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['expandedDetail']"
+          class="detail-row"
+        ></tr>
+      </ng-container>
+    </table>
+  
+    <ng-container *ngIf="hasPaginator">
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" pageSize="5"></mat-paginator>
     </ng-container>
-
-    <ng-container>
-      <tr mat-header-row *matHeaderRowDef="_columns"></tr>
-      <tr
-        [class.element-row-basic]="!(smallScreen || hasExpandibleRow)"
-        [class.element-row]="smallScreen || hasExpandibleRow"
-        [class.expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element"
-        mat-row
-        *matRowDef="let element; columns: _columns"
-      ></tr>
-    </ng-container>
-
-    <ng-container *ngIf="smallScreen || hasExpandibleRow">
-      <tr
-        mat-row
-        *matRowDef="let row; columns: ['expandedDetail']"
-        class="detail-row"
-      ></tr>
-    </ng-container>
-  </table>
-
-  <ng-container *ngIf="hasPaginator">
-    <mat-paginator [pageSizeOptions]="[5, 10, 25]" pageSize="5"></mat-paginator>
-  </ng-container>
-</div>
+  </div>

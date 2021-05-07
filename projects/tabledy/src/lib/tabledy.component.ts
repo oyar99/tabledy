@@ -27,7 +27,7 @@ export interface IColumnAccessor<T> {
 }
 
 @Component({
-  selector: 'tabledy',
+  selector: 'ngx-tabledy',
   templateUrl: 'tabledy.component.html',
   styleUrls: [
     './tabledy.component.scss'

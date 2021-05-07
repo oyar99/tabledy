@@ -18,8 +18,6 @@
     "paths": {
       "tabledy": [
         "dist/tabledy/tabledy",
-        "dist/tabledy",
-        "dist/tabledy/tabledy",
         "dist/tabledy"
       ]
     }
