@@ -1,6 +1,6 @@
 {
   "name": "tabledy",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "An angular +9 module that provides an easy-to-use data-table that supports filtering, sorting, and pagination.",
   "license": "MIT",
   "author": "Jhon Rayo",

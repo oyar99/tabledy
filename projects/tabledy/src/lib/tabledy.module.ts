@@ -7,13 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [TabledyComponent],
   imports: [
     CommonModule,
-    NoopAnimationsModule,
     FormsModule,
     LayoutModule,
     MatIconModule,
