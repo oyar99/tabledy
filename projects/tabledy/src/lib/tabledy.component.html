@@ -6,7 +6,7 @@
           (keyup)="search()"
           [(ngModel)]="query"
           type="search"
-          title="Buscar"
+          title="search"
           maxlength="10"
           class="form-control"
           id="search"
@@ -119,6 +119,6 @@
     </table>
   
     <ng-container *ngIf="hasPaginator">
-      <mat-paginator [pageSizeOptions]="[5, 10, 25]" pageSize="5"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize"></mat-paginator>
     </ng-container>
   </div>

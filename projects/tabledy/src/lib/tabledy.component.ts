@@ -50,6 +50,8 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
   @Input() searchLabel = 'Search';
   @Input() placeholderLabel = 'Search';
   @Input() hasPaginator = true;
+  @Input() pageSizeOptions: number [] = [5, 10, 25];
+  @Input() pageSize: number = 5;
   @Input() hasFilter = true;
   @Input() isResponsive = true;
   @Input() hasExpandibleRow = false;
