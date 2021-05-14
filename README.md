@@ -164,6 +164,8 @@ columns  | An array of column descriptions
 columnTemplates  | An array of ng-templates which should match the column description
 columnWidths  | An array of widths (percentage) that each column will occupy
 responsiveTemplate | The responsive/expandible row template
+rowStyle | NgStyle to apply to each row
+shouldApplyRowStyle | Whether rowStyle should be applied to a row | () => return true
 
 ## License
 

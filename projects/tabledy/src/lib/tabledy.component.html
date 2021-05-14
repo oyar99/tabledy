@@ -106,6 +106,7 @@
           (click)="expandedElement = expandedElement === element ? null : element"
           mat-row
           *matRowDef="let element; columns: _columns"
+          [ngStyle]="shouldApplyRowStyle(element) && rowStyle"
         ></tr>
       </ng-container>
   

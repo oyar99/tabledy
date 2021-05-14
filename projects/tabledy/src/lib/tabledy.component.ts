@@ -60,6 +60,11 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
   @Input() columnTemplates: TemplateRef<any> [] = [];
   @Input() columnWidths: number [];
   @Input() responsiveTemplate: TemplateRef<any>;
+  @Input() rowStyle: any = {};
+
+  @Input() shouldApplyRowStyle: (item: T) => boolean = () => {
+    return true;
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
