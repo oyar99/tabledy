@@ -104,7 +104,7 @@ export class TabledyComponent<T> implements OnInit, AfterViewInit, OnDestroy {
       return dataStr.indexOf(transformedFilter) !== -1;
     };
 
-    if (this.columns.length != this.columnTemplates.length) {
+    if (this.columns.length !== this.columnTemplates.length) {
       throw new Error(`Number of columns do not match number of templates`);
     }
 

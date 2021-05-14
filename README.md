@@ -154,6 +154,8 @@ Name  | Description | Default Value
 searchLabel  | String for the search label | 'Search'
 placeholderLabel  | String for the placeholder of the search input | 'Search'
 hasPaginator  | Whether the table will support pagination | true
+pageSizeOptions | The number of available page sizes | [5, 10, 25]
+pageSize | The default number of items per page | 5
 hasFilter  | Whether the table will support search filter | true
 isResponsive  | Whether the table will support responsive templates | true
 hasExpandibleRow  | Whether the table will have an expandible row which can be defined with a responsive template | false
